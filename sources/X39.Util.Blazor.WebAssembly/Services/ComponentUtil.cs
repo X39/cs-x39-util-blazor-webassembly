@@ -89,7 +89,7 @@ public sealed class ComponentUtil : IAsyncDisposable
     /// <remarks>
     /// Make sure to dispose the returned <see cref="IAsyncDisposable"/> when you no longer need to listen for changes.
     /// </remarks>
-    public async Task<IAsyncDisposable> RegisterOnChange(
+    public async Task<IAsyncDisposable> RegisterOnResize(
         ElementReference elementReference,
         Func<Rectangle<double>, ValueTask> callback)
     {

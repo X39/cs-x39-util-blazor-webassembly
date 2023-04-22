@@ -113,7 +113,7 @@ public partial class DashBoard
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _registerOnChange = await ComponentUtil.RegisterOnChange(_dashBoardDiv, OnResizeAsync)
+        _registerOnChange = await ComponentUtil.RegisterOnResize(_dashBoardDiv, OnResizeAsync)
             .ConfigureAwait(false);
         await base.OnAfterRenderAsync(firstRender)
             .ConfigureAwait(false);

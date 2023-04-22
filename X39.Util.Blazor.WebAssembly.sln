@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{C3AA3358-FA0D-4AAC-B23D-FA2765EDE150}"
 	ProjectSection(SolutionItems) = preProject
-		ReadMe.md = ReadMe.md
+		README.md = README.md
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 	EndProjectSection
@@ -14,6 +14,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X39.Util.Blazor.WebAssembly", "sources\X39.Util.Blazor.WebAssembly\X39.Util.Blazor.WebAssembly.csproj", "{2399FE2E-337E-4439-9F04-721B8571494D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X39.Util.Blazor.WebAssembly.Samples", "sources\X39.Util.Blazor.WebAssembly.Samples\X39.Util.Blazor.WebAssembly.Samples.csproj", "{5651B8D1-6D74-44C4-AB68-83A9A31E1BC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{B52BA89D-FE4C-4E3D-BD68-EFFFCB800956}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{10DE5119-78E1-4AB8-A1A1-5FFE3CFD72D4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,5 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2399FE2E-337E-4439-9F04-721B8571494D} = {CD410D3A-3A1C-4B44-833E-D801A9076002}
 		{5651B8D1-6D74-44C4-AB68-83A9A31E1BC5} = {CD410D3A-3A1C-4B44-833E-D801A9076002}
+		{10DE5119-78E1-4AB8-A1A1-5FFE3CFD72D4} = {B52BA89D-FE4C-4E3D-BD68-EFFFCB800956}
 	EndGlobalSection
 EndGlobal
