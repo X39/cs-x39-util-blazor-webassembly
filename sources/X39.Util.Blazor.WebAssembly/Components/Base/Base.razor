@@ -1,0 +1,15 @@
+﻿@code {
+
+    /// <summary>
+    /// The class attribute of the element.
+    /// </summary>
+    [Parameter, LanguageInjection(InjectedLanguage.CSS)]
+    public string Class { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The style attribute of the element.
+    /// </summary>
+    [Parameter, LanguageInjection(InjectedLanguage.CSS)]
+    public string Style { get; set; } = string.Empty;
+
+}

@@ -1,0 +1,27 @@
+﻿@using X39.Util.Blazor.WebAssembly.Data
+<div style="height: 100dvh; width: 100dvw; display: flex; flex-direction: column; align-items: stretch;">
+    <h1>Dashboard Sample 1</h1>
+    <DashBoard GridColumns="4" GridRows="4" Style="flex-grow: 1;">
+        <DashBoardItem GridPosition="@(new Rectangle<int>(0, 0, 1, 1))" Style="border: 5px solid red; box-sizing: border-box;" Resizable="true">
+            <p>Some random text 1</p>
+        </DashBoardItem>
+        <DashBoardItem GridPosition="@(new Rectangle<int>(1, 0, 3, 1))" Style="border: 5px solid black; box-sizing: border-box;" Resizable="true">
+            <p>Some random text 2</p>
+        </DashBoardItem>
+        <DashBoardItem GridPosition="@(new Rectangle<int>(1, 1, 2, 1))" Style="border: 5px solid darkgreen; box-sizing: border-box;">
+            <p>Some random text 3</p>
+        </DashBoardItem>
+        <DashBoardItem GridPosition="@(new Rectangle<int>(0, 2, 4, 2))" Style="border: 5px solid blue; box-sizing: border-box;">
+            <p>Some random text 4</p>
+        </DashBoardItem>
+    </DashBoard>
+</div>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000).ConfigureAwait(false);
+        await base.OnInitializedAsync();
+    }
+}

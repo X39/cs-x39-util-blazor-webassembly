@@ -1,0 +1,21 @@
+﻿@using System.Globalization
+@using X39.Util.Blazor.WebAssembly.Data
+@inherits X39.Util.Blazor.WebAssembly.Components.Base.Base
+<div class="@Class" style="
+        position: absolute;
+        left: @(_rectangle.Left.ToString(CultureInfo.InvariantCulture))px;
+        top: @(_rectangle.Top.ToString(CultureInfo.InvariantCulture))px;
+        bottom: @(_rectangle.Bottom.ToString(CultureInfo.InvariantCulture))px;
+        right: @(_rectangle.Right.ToString(CultureInfo.InvariantCulture))px;
+        width: @(_rectangle.Width.ToString(CultureInfo.InvariantCulture))px;
+        height: @(_rectangle.Height.ToString(CultureInfo.InvariantCulture))px;
+        @Style">
+    @FullHeader
+    @ChildContent
+    @if (Resizable)
+    {
+        <CascadingValue Value="@this">
+            @ResizeGrabber
+        </CascadingValue>
+    }
+</div>

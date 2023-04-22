@@ -1,0 +1,12 @@
+﻿@using Microsoft.JSInterop
+@using X39.Util.Blazor.WebAssembly.Data
+@using X39.Util.Blazor.WebAssembly.Services
+@inherits X39.Util.Blazor.WebAssembly.Components.Base.Base
+@inject ComponentUtil ComponentUtil
+@implements IAsyncDisposable
+
+<div @ref="_dashBoardDiv" class="@Class" style="position: relative; @Style" onresize="@OnResizeAsync">
+    <CascadingValue Value="@this">
+        @ChildContent
+    </CascadingValue>
+</div>

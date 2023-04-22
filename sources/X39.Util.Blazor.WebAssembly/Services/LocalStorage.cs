@@ -31,7 +31,7 @@ public sealed class LocalStorage : IAsyncDisposable
     {
         if (_accessor.IsValueCreated)
             return;
-        var res = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/exports/local-storage.js");
+        var res = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/X39.Util.Blazor.WebAssembly/js/exports/local-storage.js");
         _accessor = new Lazy<IJSObjectReference>(res);
     }
 
