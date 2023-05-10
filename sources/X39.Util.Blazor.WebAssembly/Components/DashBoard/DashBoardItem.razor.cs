@@ -100,6 +100,13 @@ public partial class DashBoardItem
     public Rectangle<double> PositionRectangle => _rectangle;
 
     /// <summary>
+    /// All attributes you add to the component that don't match any of its parameters.
+    /// They will be splatted onto the underlying HTML tag.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> UserAttributes { get; set; } = new();
+
+    /// <summary>
     /// Creates a new <see cref="DashBoardItem"/>.
     /// </summary>
     public DashBoardItem()

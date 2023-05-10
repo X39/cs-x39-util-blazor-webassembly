@@ -1,4 +1,12 @@
 ﻿export function getElementBounds(element) {
+    if (element === null) {
+        return {
+            top: 0,
+            left: 0,
+            width: 0,
+            height: 0,
+        };
+    }
     var bounding = element.getBoundingClientRect();
     return {
         top: bounding.top,
@@ -45,7 +53,7 @@ export function registerWindowEvent(event, guid, dotNetObject) {
         const obj = windowEventMap.get(event);
         let data = {};
         for (let key in e) {
-            if (typeof(e[key]) === "number" || typeof(e[key]) === "string" || e[key] === "boolean" || e[key] === "bigint") {
+            if (typeof (e[key]) === "number" || typeof (e[key]) === "string" || e[key] === "boolean" || e[key] === "bigint") {
                 data[key] = e[key];
             }
         }
@@ -60,6 +68,6 @@ export function unregisterWindowEvent(event) {
     windowEventMap.delete(event);
     window.removeEventListener(event, obj.func);
 }
-        
+
 
 //@endregion

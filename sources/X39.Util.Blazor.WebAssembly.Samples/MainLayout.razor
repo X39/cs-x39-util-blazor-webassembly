@@ -1,5 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
 <main>
-    @Body
+    <div style="display: grid; grid-template-columns: 25% 75%; grid-template-rows: 100%; gap: 0 0; grid-template-areas:'navigation content'; width: 100dvw; height: 100dvh;">
+        <nav style="grid-area: navigation; border-right: 1px solid black; box-shadow: 1px 1px 1px black; display: flex; flex-direction: column;">
+            <a href="DashBoardSample1">DashBoardSample1</a>
+            <a href="DashBoardSample2">DashBoardSample2</a>
+            <a href="DashBoardSample3">DashBoardSample3</a>
+        </nav>
+        <div style="grid-area: content">
+            @Body
+        </div>
+    </div>
 </main>

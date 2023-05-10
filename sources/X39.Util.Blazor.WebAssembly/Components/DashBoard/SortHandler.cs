@@ -499,8 +499,10 @@ public class SortHandler
 
     private static void SetArea(bool[,] gridArea, Rectangle<int> gridPosition, bool value)
     {
-        for (var x = gridPosition.Left; x < gridPosition.Right; x++)
-        for (var y = gridPosition.Top; y < gridPosition.Bottom; y++)
+        var right = Math.Min(gridArea.GetLength(0), gridPosition.Right);
+        var bottom = Math.Min(gridArea.GetLength(1), gridPosition.Bottom);
+        for (var x = gridPosition.Left; x < right; x++)
+        for (var y = gridPosition.Top; y < bottom; y++)
             gridArea[x, y] = value;
     }
 

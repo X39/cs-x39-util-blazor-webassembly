@@ -67,7 +67,7 @@ public sealed class ResizeHandler : IAsyncDisposable
             _calculatedPosition = _calculatedPosition with
             {
                 Width = _calculatedPosition.Width + movementX,
-                Height = _calculatedPosition.Height + movementY
+                Height = _calculatedPosition.Height + movementY,
             };
             var gridPosition = new Rectangle<int>(
                 Left: (int) Math.Round(_calculatedPosition.Left / columnWidth),

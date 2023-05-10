@@ -1,5 +1,6 @@
-﻿@using X39.Util.Blazor.WebAssembly.Data
-<div style="height: 100dvh; width: 100dvw; display: flex; flex-direction: column; align-items: stretch;">
+﻿@page "/DashBoardSample1"
+@using X39.Util.Blazor.WebAssembly.Data
+<div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: stretch;">
     <h1>Dashboard Sample 1</h1>
     <DashBoard GridColumns="4" GridRows="4" Style="flex-grow: 1;">
         <DashBoardItem GridPosition="@(new Rectangle<int>(0, 0, 1, 1))" Style="border: 5px solid red; box-sizing: border-box;" Resizable="true">

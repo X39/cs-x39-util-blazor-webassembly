@@ -5,7 +5,7 @@
 @inject ComponentUtil ComponentUtil
 @implements IAsyncDisposable
 
-<div @ref="_dashBoardDiv" class="@Class" style="position: relative; @Style" onresize="@OnResizeAsync">
+<div @attributes="@UserAttributes" @ref="_dashBoardDiv" class="@Class" style="position: relative; @Style" onresize="@OnResizeAsync">
     <CascadingValue Value="@this">
         @ChildContent
     </CascadingValue>

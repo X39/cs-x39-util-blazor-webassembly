@@ -1,0 +1,29 @@
+﻿@page "/DashBoardSample2"
+@using X39.Util.Blazor.WebAssembly.Data
+<div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: stretch;">
+    <h1>Dashboard Sample 1</h1>
+    <DashBoard GridColumns="4" GridRows="4" Style="flex-grow: 1;">
+        <DashBoardItem Style="@($"border: 5px solid red; {DashBoardItemCss}")" GridPosition="@(new Rectangle<int>(0, 0, 1, 1))" Resizable="true">
+            <p>Some random text 1</p>
+        </DashBoardItem>
+        <DashBoardItem Style="@($"border: 5px solid black; {DashBoardItemCss}")" GridPosition="@(new Rectangle<int>(1, 0, 3, 1))" Resizable="true">
+            <p>Some random text 2</p>
+        </DashBoardItem>
+        <DashBoardItem Style="@($"border: 5px solid darkgreen; {DashBoardItemCss}")" GridPosition="@(new Rectangle<int>(1, 1, 2, 1))">
+            <p>Some random text 3</p>
+        </DashBoardItem>
+        <DashBoardItem Style="@($"border: 5px solid blue; {DashBoardItemCss}")" GridPosition="@(new Rectangle<int>(0, 2, 4, 2))">
+            <p>Some random text 4</p>
+        </DashBoardItem>
+    </DashBoard>
+</div>
+
+@code {
+    const string DashBoardItemCss = " box-sizing: border-box; transition: all 0.1s ease;";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000).ConfigureAwait(false);
+        await base.OnInitializedAsync();
+    }
+}

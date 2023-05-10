@@ -30,6 +30,14 @@ public partial class DashBoard
     [Parameter]
     public int GridRows { get; set; } = 12;
 
+    /// <summary>
+    /// All attributes you add to the component that don't match any of its parameters.
+    /// They will be splatted onto the underlying HTML tag.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> UserAttributes { get; set; } = new();
+
+
     private readonly List<WeakReference<DashBoardItem>> _dashBoardItems = new();
 
     internal async Task RegisterDashBoardItemAsync(DashBoardItem dashBoardItem)
@@ -160,7 +168,7 @@ public partial class DashBoard
                 await _resizeHandler.DisposeAsync()
                     .ConfigureAwait(false);
                 _resizeHandler = null;
-            }
+            },
         };
         _ = _resizeHandler.InitializeAsync().ConfigureAwait(false);
     }
@@ -187,8 +195,8 @@ public partial class DashBoard
             {
                 await _moveHandler.DisposeAsync()
                     .ConfigureAwait(false);
-                _resizeHandler = null;
-            }
+                _moveHandler = null;
+            },
         };
         _ = _moveHandler.InitializeAsync().ConfigureAwait(false);
     }
