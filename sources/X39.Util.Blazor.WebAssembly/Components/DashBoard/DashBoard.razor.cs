@@ -91,6 +91,8 @@ public partial class DashBoard
     {
         var elementBounds = await GetBoundsAsync()
             .ConfigureAwait(false);
+        if (elementBounds is {Width: 0} or {Height: 0})
+            throw new InvalidOperationException($"DashBoard width or height is 0 ({elementBounds}).");
         return GetGridWidthAndHeight(elementBounds);
     }
 

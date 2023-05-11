@@ -77,12 +77,10 @@ public sealed class MoveHandler : IAsyncDisposable
                 Top: (int) Math.Max(Math.Round(_calculatedPosition.Top / rowHeight), 0),
                 Width: (int) Math.Max(1, Math.Round(_calculatedPosition.Width / columnWidth)),
                 Height: (int) Math.Max(1, Math.Round(_calculatedPosition.Height / rowHeight)));
-            System.Console.WriteLine(gridPosition);
             if (gridPosition.Right > _dashBoard.GridColumns)
                 gridPosition = gridPosition with {Left = Math.Max(0, _dashBoard.GridColumns - gridPosition.Width)};
             if (gridPosition.Bottom > _dashBoard.GridRows)
                 gridPosition = gridPosition with {Top = Math.Max(0, _dashBoard.GridRows - gridPosition.Height)};
-            System.Console.WriteLine(gridPosition);
             var dashBoardItems = await GetItems()
                 .ConfigureAwait(false);
             var sortHandler = new SortHandler(
