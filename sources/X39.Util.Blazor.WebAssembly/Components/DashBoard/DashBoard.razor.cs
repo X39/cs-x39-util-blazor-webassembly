@@ -153,6 +153,50 @@ public partial class DashBoard
     private ResizeHandler? _resizeHandler;
     private MoveHandler?   _moveHandler;
 
+    /// <summary>
+    /// Sorts the <see cref="DashBoardItem"/>s in the <see cref="DashBoard"/>.
+    /// </summary>
+    /// <returns>
+    /// <see langword="true"/> if the sort was successful, <see langword="false"/> otherwise.
+    /// If <see langword="false"/> is returned, the <see cref="DashBoardItem"/>s are not moved.
+    /// </returns>
+    public async Task<bool> SortAsync()
+    {
+        var (columnWidth, rowHeight) = await GetGridWidthAndHeightAsync().ConfigureAwait(false);
+        ImmutableArray<DashBoardItem> dashBoardItems;
+        lock (_dashBoardItems)
+        {
+            dashBoardItems = _dashBoardItems
+                .Select((q) => q.TryGetTarget(out var target) ? target : null)
+                .NotNull()
+                .ToImmutableArray();
+        }
+
+        var sortHandler = new SortHandler(
+            dashBoardItems,
+            ArraySegment<DashBoardItem>.Empty,
+            columnWidth,
+            rowHeight,
+            GridColumns,
+            GridRows);
+        var (success, positions) = sortHandler.SortPositions();
+        if (!success)
+            return false;
+        await Task.WhenAll(
+                dashBoardItems.Select(
+                        async (dashBoardItem) =>
+                        {
+                            await dashBoardItem
+                                .SetPositionAsync(
+                                    positions[dashBoardItem].GridPosition,
+                                    positions[dashBoardItem].ActualPosition)
+                                .ConfigureAwait(false);
+                        })
+                    .ToArray())
+            .ConfigureAwait(false);
+        return true;
+    }
+
     public async Task BeginResizeAsync(DashBoardItem dashBoardItem)
     {
         if (_resizeHandler is not null)
@@ -181,6 +225,7 @@ public partial class DashBoard
         };
         _ = _resizeHandler.InitializeAsync().ConfigureAwait(false);
     }
+
     public async Task BeginMoveAsync(DashBoardItem dashBoardItem)
     {
         if (_resizeHandler is not null)
