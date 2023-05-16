@@ -1,0 +1,34 @@
+﻿@page "/DashBoardSample4"
+@using X39.Util.Blazor.WebAssembly.Data
+<div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: stretch;">
+    <h1>Dashboard Sample 1</h1>
+    <p>
+        <span @onclick="@(async () => { DynamicItemsCount++; })">+</span>
+        <span>@DynamicItemsCount</span>
+        <span @onclick="@(async () => { DynamicItemsCount--;})">-</span>
+    </p>
+    <DashBoard @ref="_dashBoard" GridColumns="4" GridRows="4" Style="flex-grow: 1;" AutoSort="true">
+        @foreach (var i in Enumerable.Range(0, DynamicItemsCount))
+        {
+            <DashBoardItem Style="@($"border: 5px solid blue; {DashBoardItemCss}")"
+                           GridPosition="@(new Rectangle<int>(0, 2, 4, 2))"
+                           Resizable="true">
+                <p>Item @i</p>
+            </DashBoardItem>
+        }
+    </DashBoard>
+</div>
+
+@code {
+        const string DashBoardItemCss = " box-sizing: border-box; transition: all 0.25s ease;";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000).ConfigureAwait(false);
+        await base.OnInitializedAsync();
+    }
+
+    private int DynamicItemsCount = 0;
+
+    private DashBoard _dashBoard = null!;
+}

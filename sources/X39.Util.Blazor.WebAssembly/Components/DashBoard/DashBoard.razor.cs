@@ -31,6 +31,12 @@ public partial class DashBoard
     public int GridRows { get; set; } = 12;
 
     /// <summary>
+    /// Whether or not to automatically sort the <see cref="DashBoardItem"/>'s.
+    /// </summary>
+    [Parameter]
+    public bool AutoSort { get; set; } = false;
+
+    /// <summary>
     /// All attributes you add to the component that don't match any of its parameters.
     /// They will be splatted onto the underlying HTML tag.
     /// </summary>
@@ -46,6 +52,15 @@ public partial class DashBoard
             throw new ArgumentNullException(nameof(dashBoardItem));
         lock (_dashBoardItems)
         {
+            System.Console.Write(_dashBoardItems.Count);
+            foreach (var weakReference in _dashBoardItems)
+            {
+                if (weakReference.TryGetTarget(out _))
+                    System.Console.WriteLine("true");
+                else
+                    System.Console.WriteLine("false");
+            }
+
             _dashBoardItems.RemoveAll(weakReference => !weakReference.TryGetTarget(out _));
             _dashBoardItems.Add(new WeakReference<DashBoardItem>(dashBoardItem));
         }
@@ -54,6 +69,32 @@ public partial class DashBoard
         var position = GetDashBoardItemPosition(dashBoardItem, rowHeight, columnWidth);
         await dashBoardItem.SetPositionAsync(dashBoardItem.GridPosition, position)
             .ConfigureAwait(false);
+        if (AutoSort)
+            _ = await SortAsync()
+                .ConfigureAwait(false);
+    }
+
+    internal async Task UnregisterDashBoardItemAsync(DashBoardItem dashBoardItem)
+    {
+        lock (_dashBoardItems)
+        {
+            System.Console.Write(_dashBoardItems.Count);
+            foreach (var weakReference in _dashBoardItems)
+            {
+                if (weakReference.TryGetTarget(out _))
+                    System.Console.WriteLine("true");
+                else
+                    System.Console.WriteLine("false");
+            }
+
+            _dashBoardItems.RemoveAll(
+                weakReference => weakReference.TryGetTarget(out var target)
+                                 && target == dashBoardItem);
+        }
+
+        if (AutoSort)
+            _ = await SortAsync()
+                .ConfigureAwait(false);
     }
 
     private static Rectangle<double> GetDashBoardItemPosition(

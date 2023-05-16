@@ -4,7 +4,7 @@ using X39.Util.Blazor.WebAssembly.Data;
 namespace X39.Util.Blazor.WebAssembly.Components.DashBoard;
 
 [PublicAPI]
-public partial class DashBoardItem
+public partial class DashBoardItem : IAsyncDisposable
 {
     private Rectangle<double> _rectangle;
 
@@ -171,6 +171,12 @@ public partial class DashBoardItem
                 .ConfigureAwait(false);            
         }
         await InvokeAsync(StateHasChanged)
+            .ConfigureAwait(false);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DashBoard.UnregisterDashBoardItemAsync(this)
             .ConfigureAwait(false);
     }
 }
